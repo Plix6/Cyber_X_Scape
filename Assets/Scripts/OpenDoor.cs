@@ -4,35 +4,50 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    public GameObject Instruction;
-    public GameObject Animation;
-    public GameObject Trigger;
-    public AudioSource DoorSound;
+    [SerializeField] public GameObject Instruction;
+    [SerializeField] public GameObject Animation;
+    private Animator animator;
+    //public AudioSource DoorSound;
     public bool Action = false;
+
+    private void Awake()
+    {
+        animator = Animation.GetComponent<Animator>();
+    }
+
     void Start()
     {
         Instruction.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if ( collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             Instruction.SetActive(true);
             Action = true;
         }
     }
 
+    private void OnTriggerExit(Collider collision)
+    {
+        Instruction.SetActive(false) ;
+        Action = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-       if (Action == true)
-        {
-            Instruction.SetActive(false);
-            Animation.GetComponent<Animator>().Play("DoorOpen");
-            Trigger.SetActive(false);
-            DoorSound.Play();
-            Action = false;
+        if (Input.GetKeyDown(KeyCode.E)) {
+            if (Action == true)
+            {
+                Instruction.SetActive(false);
+                //DoorSound.Play();
+                Action = false;
+                animator.SetBool("open", !animator.GetBool("open"));
+            }
+
         }
+       
     }
 }

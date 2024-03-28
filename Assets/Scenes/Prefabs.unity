@@ -1070,6 +1070,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5602443083604270051, guid: 7eea4e0f55828844c8b9614c9b21d35e, type: 3}
+      propertyPath: m_Name
+      value: WheelBottom
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7eea4e0f55828844c8b9614c9b21d35e, type: 3}
       propertyPath: m_Name
       value: CypherWheel
@@ -1080,7 +1084,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7eea4e0f55828844c8b9614c9b21d35e, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1292789606}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7eea4e0f55828844c8b9614c9b21d35e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 545641832}
   m_SourcePrefab: {fileID: 100100000, guid: 7eea4e0f55828844c8b9614c9b21d35e, type: 3}
 --- !u!1 &308789302
 GameObject:
@@ -1209,6 +1216,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6112825015637777849, guid: 747e7d6d0eefc9e4f9296313cb1d5fcf, type: 3}
   m_PrefabInstance: {fileID: 1600102286}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &399856275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7eea4e0f55828844c8b9614c9b21d35e, type: 3}
+  m_PrefabInstance: {fileID: 307901232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &409328848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1308,6 +1320,22 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7eea4e0f55828844c8b9614c9b21d35e, type: 3}
   m_PrefabInstance: {fileID: 307901232}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &545641832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399856275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df91612a091edda4dbaf88d2801b1bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1292789605}
+  duration: 10
+  startY: 0
+  endY: 90
 --- !u!1001 &556257146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2236,7 +2264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.22
+      value: 11.705
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2244,7 +2272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.78
+      value: 11.73
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3155,14 +3183,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1270872504}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.59612125, y: 0.3931462, z: -0.5618267, w: 0.41764367}
+  m_LocalRotation: {x: 0.579228, y: 0.4055798, z: -0.579228, w: 0.4055798}
   m_LocalPosition: {x: 0.62300014, y: -0.15399987, z: -1.9779997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 176928010}
   m_Father: {fileID: 1512200613}
-  m_LocalEulerAnglesHint: {x: 110, y: 86.673, z: 0.09399414}
+  m_LocalEulerAnglesHint: {x: 110, y: 90, z: 0}
 --- !u!23 &1270872506
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3225,7 +3253,7 @@ GameObject:
   - component: {fileID: 1292789608}
   - component: {fileID: 1292789607}
   m_Layer: 0
-  m_Name: Cipher_Wheel (1)
+  m_Name: WheelTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3853,6 +3881,7 @@ GameObject:
   - component: {fileID: 1512200613}
   - component: {fileID: 1512200614}
   - component: {fileID: 1512200615}
+  - component: {fileID: 1512200616}
   m_Layer: 0
   m_Name: InputSwitch
   m_TagString: Untagged
@@ -3889,7 +3918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eb462b389f9134fa101dde47834f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Knob: {fileID: 1270872504}
+  animator: {fileID: 1512200616}
 --- !u!65 &1512200615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3911,6 +3940,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.40553823, y: 0.7693667, z: 0.17695244}
   m_Center: {x: 0.75894874, y: -0.16662371, z: -1.9717416}
+--- !u!95 &1512200616
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512200612}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 87906f8aa1ea632459dc5ecf57e96308, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1600102286
 PrefabInstance:
   m_ObjectHideFlags: 0

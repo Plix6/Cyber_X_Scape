@@ -4,37 +4,44 @@ using UnityEngine;
 
 public class CipherWheelAnimation : MonoBehaviour
 {
-    [SerializeField] private GameObject target;
-    public float duration;
-    public float startY;
-    public float endY;
+    [SerializeField] private GameObject topWheel;
+    [SerializeField] private float duration;
+    private int curShift;
+    private float curRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        RotationAnimation rotationAnimation = new RotationAnimation();
-        bool smooth = true;
-
-        PlayRotationAnimation(startY, endY, duration);
-        // rotationAnimation.PlayRotationAnimation(startY, endY, duration, smooth, target);
+        NewRandomShift(); // Initial rotation
     }
 
-    void PlayRotationAnimation(float startY, float endY, float duration)
+    public void NewRandomShift()
     {
-        // Create a new AnimationClip
-        AnimationClip clip = new AnimationClip();
+        int newShift;
+        do
+        {
+            newShift = Random.Range(1, 26);
+        } while (newShift == curShift);
 
-        // Create an AnimationCurve for rotation.y
-        AnimationCurve curve = AnimationCurve.EaseInOut(0, startY, duration, endY);
+        curShift = newShift;
+        ChangeRotation();
+    }
 
-        // Assign curve to the AnimationClip
-        clip.SetCurve("", typeof(Transform), "localRotation.eulerAngles.y", curve);
+    private void ChangeRotation()
+    {
+        float rotationChange = (360f / 26) * curShift - curRotation;
+        curRotation = rotationChange + curRotation;
 
-        // Add the AnimationClip to an Animation component
-        Animation animation = target.AddComponent<Animation>();
-        animation.clip = clip;
+        LeanTween.cancel(topWheel);
+        Debug.Log("Shift : " + curShift + "; Rotation : " + curRotation);
+        LeanTween.rotateAroundLocal(topWheel,
+            Vector3.back,
+            rotationChange, 
+            duration);
+    }
 
-        // Play the animation
-        animation.Play();
+    public int GetShift()
+    {
+        return curShift;
     }
 }

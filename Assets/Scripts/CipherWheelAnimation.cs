@@ -37,7 +37,7 @@ public class CipherWheelAnimation : MonoBehaviour
         LeanTween.rotateAroundLocal(topWheel,
             Vector3.back,
             rotationChange, 
-            duration);
+            duration).setEaseInOutCubic();
     }
 
     public int GetShift()

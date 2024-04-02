@@ -1,47 +1,96 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class CipherWheelAnimation : MonoBehaviour
 {
-    [SerializeField] private GameObject topWheel;
+    [SerializeField] private GameObject[] centerWheels;
     [SerializeField] private float duration;
-    private int curShift;
-    private float curRotation = 0f;
+    private Color[] wheelColors = { 
+        new (205 / 255f, 28 / 255f, 19/255f, 0.8f), //red
+        new (66 / 255f, 91 / 255f, 207 / 255f, 0.8f), //blue
+        new (63 / 255f, 193 / 255f, 76 / 255f, 0.8f), //green
+    };
+
+    private int[] curShifts = { 0, 0, 0 };
+    private float[] curRotations = { 0f, 0f, 0f };
+    // gameObj.GetComponent<Renderer>().material.color = new Color(0, 204, 102);
+
+    private void Awake()
+    {
+        for (int i = 0; i < centerWheels.Length; i++)
+        {
+            centerWheels[i].GetComponent<Renderer>().material.color = wheelColors[i];
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        NewRandomShift(); // Initial rotation
+        NewRandomShifts(); // Initial rotation
     }
 
-    public void NewRandomShift()
+    private void Update()
     {
-        int newShift;
-        do
+        if (Input.GetKeyUp(KeyCode.K))
         {
-            newShift = Random.Range(1, 26);
-        } while (newShift == curShift);
-
-        curShift = newShift;
-        ChangeRotation();
+            NewRandomShifts();
+        }
     }
 
-    private void ChangeRotation()
+    public void NewRandomShifts()
     {
-        float rotationChange = (360f / 26) * curShift - curRotation;
-        curRotation = rotationChange + curRotation;
+        for (int i = 0; i < centerWheels.Length; i++)
+        {
+            int newShift;
+            do {
+                newShift = Random.Range(1, 26);
+            } while (newShift == curShifts[i]);
+            curShifts[i] = newShift;
+        }
 
-        LeanTween.cancel(topWheel);
-        Debug.Log("Shift : " + curShift + "; Rotation : " + curRotation);
-        LeanTween.rotateAroundLocal(topWheel,
-            Vector3.back,
-            rotationChange, 
-            duration).setEaseInOutCubic();
+        ChangeRotations();
     }
 
-    public int GetShift()
+    private void ChangeRotations()
     {
-        return curShift;
+        for (int i = 0; i < centerWheels.Length; i++)
+        {
+            float rotationChange = -1 * (360f / 26) * curShifts[i] - curRotations[i];
+            curRotations[i] = rotationChange + curRotations[i];
+
+            LeanTween.cancel(centerWheels[i]);
+            Debug.Log("Wheel " + (i+1) + " :");
+            Debug.Log("Shift : " + curShifts[i] + "; Rotation : " + curRotations[i] + "; M (bottom) = " + ConvertString("M", curShifts[i]));
+            LeanTween.rotateAroundLocal(centerWheels[i],
+                Vector3.back,
+                rotationChange,
+                duration).setEaseInOutCubic();
+        }
+    }
+
+    public int[] GetShifts()
+    {
+        return curShifts;
+    }
+
+    public string ConvertString(string input, int shift)
+    {
+        byte[] codes = Encoding.ASCII.GetBytes(input);
+        byte[] limits = Encoding.ASCII.GetBytes("AZ");
+
+        for (int i = 0; i < codes.Length; i++)
+        {
+            codes[i] += (byte)shift;
+            if (codes[i] > limits[1])
+            {
+                codes[i] += (byte)(limits[0] - limits[1] - 1);
+            }
+        }
+
+        string result = Encoding.ASCII.GetString(codes);
+
+        return result;
     }
 }

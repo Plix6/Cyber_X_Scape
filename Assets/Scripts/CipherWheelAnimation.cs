@@ -31,14 +31,6 @@ public class CipherWheelAnimation : MonoBehaviour
         NewRandomShifts(); // Initial rotation
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.K))
-        {
-            NewRandomShifts();
-        }
-    }
-
     public void NewRandomShifts()
     {
         for (int i = 0; i < centerWheels.Length; i++)
@@ -61,8 +53,6 @@ public class CipherWheelAnimation : MonoBehaviour
             curRotations[i] = rotationChange + curRotations[i];
 
             LeanTween.cancel(centerWheels[i]);
-            Debug.Log("Wheel " + (i+1) + " :");
-            Debug.Log("Shift : " + curShifts[i] + "; Rotation : " + curRotations[i] + "; M (bottom) = " + ConvertString("M", curShifts[i]));
             LeanTween.rotateAroundLocal(centerWheels[i],
                 Vector3.back,
                 rotationChange,
@@ -78,14 +68,14 @@ public class CipherWheelAnimation : MonoBehaviour
     public string ConvertString(string input, int shift)
     {
         byte[] codes = Encoding.ASCII.GetBytes(input);
-        byte[] limits = Encoding.ASCII.GetBytes("AZ");
+        byte[] limits = Encoding.ASCII.GetBytes("AZ"); // Get ASCII limit codes
 
         for (int i = 0; i < codes.Length; i++)
         {
-            codes[i] += (byte)shift;
+            codes[i] += (byte)shift; // Add shift
             if (codes[i] > limits[1])
             {
-                codes[i] += (byte)(limits[0] - limits[1] - 1);
+                codes[i] += (byte)(limits[0] - limits[1] - 1); // If goes over Z, go back to A
             }
         }
 

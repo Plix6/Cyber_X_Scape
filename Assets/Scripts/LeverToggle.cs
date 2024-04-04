@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class LeverToggle : MonoBehaviour
 {
+    private Color ON_COLOR = Color.yellow;
+    private Color OFF_COLOR = Color.gray;
+
     [SerializeField] private Animator animator;
     [SerializeField] private GameObject cablePrefab;
     private Renderer[] renderers;
+
+    public bool startingPositionOn = false;
 
     private void Awake()
     {
@@ -15,33 +20,44 @@ public class LeverToggle : MonoBehaviour
 
     private void Start()
     {
-        ChangeCableColor(Color.gray);
+        if (startingPositionOn)
+        {
+            ToggleLeverState();
+        }
     }
 
     private void OnMouseUpAsButton()
     {
-        animator.SetBool("Activated", !animator.GetBool("Activated"));
-        StartCoroutine(updateCableColor());
+        ToggleLeverState();
     }
 
     private IEnumerator updateCableColor()
     {
         yield return new WaitForSeconds(1);
-        if (animator.GetBool("Activated"))
-        {
-            ChangeCableColor(Color.yellow);
-        } else
-        {
-            ChangeCableColor(Color.gray);
-        }
+
+        ChangeCableColor(animator.GetBool("Activated"));
+
         yield return null;
     }
 
-    private void ChangeCableColor(Color newColor)
+    private void ChangeCableColor(bool on)
     {
         foreach (Renderer rd in renderers)
         {
-            rd.material.color = newColor;
+            if (on)
+            {
+                rd.material.color = ON_COLOR; 
+            }
+            else
+            {
+                rd.material.color = OFF_COLOR;
+            }
         }
+    }
+
+    private void ToggleLeverState()
+    {
+        animator.SetBool("Activated", !animator.GetBool("Activated"));
+        StartCoroutine(updateCableColor());
     }
 }

@@ -666,6 +666,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Instruction: {fileID: 2130412174}
+  Distributor: {fileID: 1588288699}
+  Key: {fileID: 3874798687770068871, guid: 974c90fb5c85e1145b28c692035ab2f2, type: 3}
+  SpawnPoint: {fileID: 0}
+  Action: 0
 --- !u!1001 &55645892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -861,6 +865,18 @@ PrefabInstance:
     - target: {fileID: 252629911600637343, guid: 2d678e3e202b1344d999c6e60927f9ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467118241065998512, guid: 2d678e3e202b1344d999c6e60927f9ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467118241065998512, guid: 2d678e3e202b1344d999c6e60927f9ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.407
+      objectReference: {fileID: 0}
+    - target: {fileID: 1467118241065998512, guid: 2d678e3e202b1344d999c6e60927f9ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15.7
       objectReference: {fileID: 0}
     - target: {fileID: 3874798687770068871, guid: 2d678e3e202b1344d999c6e60927f9ab, type: 3}
       propertyPath: m_Name
@@ -1366,6 +1382,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Instruction: {fileID: 2130412174}
+  Distributor: {fileID: 918147605}
+  Key: {fileID: 3874798687770068871, guid: 974c90fb5c85e1145b28c692035ab2f2, type: 3}
+  SpawnPoint: {fileID: 0}
+  Action: 0
 --- !u!65 &159455810
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4215,6 +4235,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Instruction: {fileID: 2130412174}
+  Distributor: {fileID: 1532485882}
+  Key: {fileID: 3426074514736748540, guid: 265985eb0c0ecae4cb91c2fd662f9287, type: 3}
+  SpawnPoint: {fileID: 1463961924}
+  Action: 0
 --- !u!1001 &600373154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5014,7 +5038,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647328303}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &647328305
 Camera:
   m_ObjectHideFlags: 0
@@ -5903,6 +5927,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Instruction: {fileID: 2130412174}
+  Distributor: {fileID: 1170671833}
+  Key: {fileID: 3874798687770068871, guid: 974c90fb5c85e1145b28c692035ab2f2, type: 3}
+  SpawnPoint: {fileID: 0}
+  Action: 0
 --- !u!1001 &730884241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9118,6 +9146,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 439240, guid: 548a40efc092c6f408cc4d1691b171cc, type: 3}
   m_PrefabInstance: {fileID: 907451488}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &918147605 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
+  m_PrefabInstance: {fileID: 1456435853}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &924193693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11114,6 +11147,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 439240, guid: 548a40efc092c6f408cc4d1691b171cc, type: 3}
   m_PrefabInstance: {fileID: 1155866505}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1170671833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
+  m_PrefabInstance: {fileID: 1200050276}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1178599241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11388,7 +11426,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_Name
-      value: Modern Vending Machine (1)
+      value: orange
       objectReference: {fileID: 0}
     - target: {fileID: 4403209018745402, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_LocalScale.x
@@ -13146,7 +13184,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_Name
-      value: Modern Vending Machine
+      value: yellow_1
       objectReference: {fileID: 0}
     - target: {fileID: 4403209018745402, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_LocalScale.x
@@ -13301,6 +13339,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 439240, guid: 548a40efc092c6f408cc4d1691b171cc, type: 3}
   m_PrefabInstance: {fileID: 1456768808}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1463961924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1463961925}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1463961925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463961924}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.016, y: 0.448, z: 0.4303}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 700654850}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1471760182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13377,7 +13446,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_Name
-      value: Modern Vending Machine (2)
+      value: blue
       objectReference: {fileID: 0}
     - target: {fileID: 4403209018745402, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_LocalScale.x
@@ -13453,6 +13522,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4403209018745402, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 596803209}
+    - targetCorrespondingSourceObject: {fileID: 4403209018745402, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1463961925}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1945308846859716, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       insertIndex: -1
@@ -13530,7 +13602,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_Name
-      value: Modern Vending Machine (3)
+      value: yellow_2
       objectReference: {fileID: 0}
     - target: {fileID: 4403209018745402, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
       propertyPath: m_LocalScale.x
@@ -13953,6 +14025,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 444218, guid: 69b3d20c177508d43a1c6f09b448d3ea, type: 3}
   m_PrefabInstance: {fileID: 1511699749}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1532485882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
+  m_PrefabInstance: {fileID: 1492421214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1536741719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14169,19 +14246,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.239542
+      value: -2.42
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.462
+      value: 6.03
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.608
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.18840976
+      value: 0.09671446
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalRotation.x
@@ -14189,11 +14266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.98209053
+      value: -0.9953122
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -14201,7 +14278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 201.72
+      value: -168.9
       objectReference: {fileID: 0}
     - target: {fileID: 1927095934725912877, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -14665,6 +14742,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 439240, guid: 548a40efc092c6f408cc4d1691b171cc, type: 3}
   m_PrefabInstance: {fileID: 1587016734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1588288699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1979480663149564, guid: 1e22ef20d47d54487a606eb5bc7011a8, type: 3}
+  m_PrefabInstance: {fileID: 1502054780}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1590125243
 PrefabInstance:
@@ -15846,7 +15928,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737029386}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 

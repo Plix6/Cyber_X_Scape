@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    [SerializeField] public GameObject Instruction;
+    [SerializeField] public GameObject instruction;
     [SerializeField] public GameObject Animation;
     private Animator animator;
     //public AudioSource DoorSound;
-    public bool Action = false;
+    public bool action = false;
 
     private void Awake()
     {
@@ -17,37 +17,33 @@ public class OpenDoor : MonoBehaviour
 
     void Start()
     {
-        Instruction.SetActive(false);
+        instruction.SetActive(false);
     }
 
-    void OnTriggerEnter(Collider collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.tag == "Player")
+        if (other.CompareTag("Player"))
         {
-            Instruction.SetActive(true);
-            Action = true;
+            instruction.SetActive(true);
+            action = true;
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider other)
     {
-        Instruction.SetActive(false) ;
-        Action = false;
+        instruction.SetActive(false);
+        action = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) {
-            if (Action == true)
-            {
-                Instruction.SetActive(false);
-                //DoorSound.Play();
-                Action = false;
-                animator.SetBool("open", !animator.GetBool("open"));
-            }
-
+        if (Input.GetKeyDown(KeyCode.E) && action)
+        {
+            instruction.SetActive(false);
+            //DoorSound.Play();
+            action = false;
+            animator.SetBool("open", !animator.GetBool("open"));
         }
-       
     }
 }

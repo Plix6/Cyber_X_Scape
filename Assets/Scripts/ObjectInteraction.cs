@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObjectInteraction : MonoBehaviour
 {
-    [SerializeField] private float throwForce = 500f;
-
+    [SerializeField] private float throwForce = 0.1f;
+    [SerializeField] private Camera camera_;
     private Transform playerTransform;
     private Rigidbody objectRigidbody;
     private bool isHolding = false;
@@ -17,9 +17,15 @@ public class ObjectInteraction : MonoBehaviour
 
     void PickUpObject()
     {
-        if (Physics.Raycast(playerTransform.position, playerTransform.forward, out RaycastHit hit, Mathf.Infinity))
+        float maxRaycastDistance = 5f;
+        Camera cam = Camera.main;
+        Vector3 cameraDirection = cam.transform.forward;
+
+
+        if (Physics.Raycast(camera_.transform.position, camera_.transform.forward, out RaycastHit hit, maxRaycastDistance))
         {
-            Debug.Log("Objet touché : " + hit.collider.gameObject.name); 
+            Debug.Log("Objet touché : " + hit.collider.gameObject.name);
+            Debug.DrawRay(playerTransform.position, playerTransform.forward, Color.white);
             if (hit.collider.TryGetComponent(out objectRigidbody) && objectRigidbody != null)
             {
                 objectRigidbody.isKinematic = true;
@@ -70,5 +76,4 @@ public class ObjectInteraction : MonoBehaviour
             ThrowObject();
         }
     }
-
 }

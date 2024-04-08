@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5460571188311740275}
   m_Layer: 0
   m_Name: sm_key_01
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,9 +143,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5859201063186152952}
+  - component: {fileID: 1174460576494494464}
   m_Layer: 0
   m_Name: key
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,3 +167,15 @@ Transform:
   - {fileID: 3911536019254892677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1174460576494494464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426074514736748540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75de3144e165233428cb5cd746b530a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

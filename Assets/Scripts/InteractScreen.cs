@@ -2,6 +2,7 @@ using SojaExiles;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InteractScreen : MonoBehaviour
@@ -18,6 +19,8 @@ public class InteractScreen : MonoBehaviour
     private bool screenDetected = false;
     private bool screenActivated = false;
     private GameObject target;
+
+    private RetrieveScreenText retriever;
 
     private void Awake()
     {
@@ -70,13 +73,16 @@ public class InteractScreen : MonoBehaviour
     private void SetupScreen()
     {
         ToggleScreen();
-        input.text = target.GetComponent<RetrieveScreenText>().getText();
+        retriever = target.GetComponent<RetrieveScreenText>();
+        input.text = retriever.getText();
+        input.ActivateInputField();
     }
 
     private void RemoveScreen()
     {
         ToggleScreen();
         Cursor.lockState = CursorLockMode.Locked;
+        input.DeactivateInputField();
     }
 
     private void ToggleScreen()
@@ -85,5 +91,10 @@ public class InteractScreen : MonoBehaviour
         mouse.ToggleMovement();
         screenActivated = !screenActivated;
         screenPanel.SetActive(!screenPanel.activeSelf);
+    }
+
+    public void ValueChanged (string txt)
+    {
+
     }
 }

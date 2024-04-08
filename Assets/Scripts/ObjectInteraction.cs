@@ -6,37 +6,35 @@ public class ObjectInteraction : MonoBehaviour
 {
     [SerializeField] private float throwForce = 0.1f;
     [SerializeField] private Camera camera_;
-    private Transform playerTransform;
     private Rigidbody objectRigidbody;
     private bool isHolding = false;
 
-    private void Awake()
+    private void SetObjectPhysics(bool isKinematic, bool useGravity, Transform parent)
     {
-        playerTransform = GetComponent<Transform>();
+        objectRigidbody.isKinematic = isKinematic;
+        objectRigidbody.useGravity = useGravity;
+        objectRigidbody.transform.parent = parent;
     }
 
     void PickUpObject()
     {
         float maxRaycastDistance = 5f;
-        Camera cam = Camera.main;
-        Vector3 cameraDirection = cam.transform.forward;
+        Vector3 cameraDirection = camera_.transform.forward;
 
-
-        if (Physics.Raycast(camera_.transform.position, camera_.transform.forward, out RaycastHit hit, maxRaycastDistance))
+        if (Physics.Raycast(camera_.transform.position, cameraDirection, out RaycastHit hit, maxRaycastDistance))
         {
             Debug.Log("Objet touché : " + hit.collider.gameObject.name);
-            Debug.DrawRay(playerTransform.position, playerTransform.forward, Color.white);
+
             if (hit.collider.TryGetComponent(out objectRigidbody) && objectRigidbody != null)
             {
-                objectRigidbody.isKinematic = true;
-                objectRigidbody.position = playerTransform.position + playerTransform.forward * 2f;
-                objectRigidbody.transform.parent = playerTransform;
+                SetObjectPhysics(true, false, camera_.transform);
+                objectRigidbody.position = camera_.transform.position + camera_.transform.forward * 2f;
                 isHolding = true;
             }
         }
         else
         {
-            Debug.Log("Aucun objet touché."); 
+            Debug.Log("Aucun objet touché.");
         }
     }
 
@@ -44,8 +42,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         if (objectRigidbody != null)
         {
-            objectRigidbody.isKinematic = false;
-            objectRigidbody.transform.parent = null;
+            SetObjectPhysics(false, true, null);
             isHolding = false;
         }
     }
@@ -54,9 +51,8 @@ public class ObjectInteraction : MonoBehaviour
     {
         if (objectRigidbody != null)
         {
-            objectRigidbody.isKinematic = false;
-            objectRigidbody.transform.parent = null;
-            objectRigidbody.velocity = playerTransform.forward * throwForce;
+            SetObjectPhysics(false, true, null);
+            objectRigidbody.velocity = camera_.transform.forward;
             isHolding = false;
         }
     }

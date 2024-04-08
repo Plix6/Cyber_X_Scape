@@ -8,18 +8,21 @@ public class LeverToggle : MonoBehaviour
     private Color OFF_COLOR = Color.gray;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject cablePrefab;
+    [SerializeField] private GameObject serverSideCable;
+    [SerializeField] private GameObject panelSideCable;
     private Renderer[] renderers;
 
     public bool startingPositionOn = false;
 
     private void Awake()
     {
-        renderers = cablePrefab.GetComponentsInChildren<Renderer>();
+        renderers = panelSideCable.GetComponentsInChildren<Renderer>();
     }
 
     private void Start()
     {
+        serverSideCable.GetComponentInChildren<Renderer>().material.color = ON_COLOR;
+
         if (startingPositionOn)
         {
             ToggleLeverState();

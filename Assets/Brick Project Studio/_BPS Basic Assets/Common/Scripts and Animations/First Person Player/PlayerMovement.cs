@@ -13,6 +13,8 @@ namespace SojaExiles
         public float speed = 5f;
         public float gravity = -15f;
 
+        private bool activated = true;
+
         Vector3 velocity;
 
         bool isGrounded;
@@ -24,14 +26,22 @@ namespace SojaExiles
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 
-            Vector3 move = transform.right * x + transform.forward * z;
+            if (activated)
+            {
+                Vector3 move = transform.right * x + transform.forward * z;
 
-            controller.Move(move * speed * Time.deltaTime);
+                controller.Move(move * speed * Time.deltaTime);
 
-            velocity.y += gravity * Time.deltaTime;
+                velocity.y += gravity * Time.deltaTime;
 
-            controller.Move(velocity * Time.deltaTime);
+                controller.Move(velocity * Time.deltaTime);
+            }
 
         }
+        public void ToggleMovement()
+        {
+            activated = !activated;
+        }
     }
+
 }

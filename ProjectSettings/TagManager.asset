@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - ScreenInteractable
+  - Key
+  - PrivateKey
   layers:
   - Default
   - TransparentFX

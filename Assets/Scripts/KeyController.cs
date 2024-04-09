@@ -9,6 +9,8 @@ public class KeyController : MonoBehaviour
     [SerializeField] private GameObject Distributor;
     [SerializeField] private GameObject Key;
     [SerializeField] private GameObject SpawnPoint;
+    private Color orange = new Color(1, 90f / 255, 0);
+    private Color cyan = new Color(93f / 255, 202f / 255, 197f / 255);
     public bool Action = false;
 
     // Start is called before the first frame update
@@ -60,7 +62,12 @@ public class KeyController : MonoBehaviour
         newKey.GetComponent<KeyColor>().SetColor(keyColor);
         Renderer keyRenderer = newKey.GetComponentInChildren<Renderer>();
         keyRenderer.material.color = keyColor;
-        newKey.tag = "Key";
+        if (keyColor == orange || keyColor == cyan)
+        {
+            newKey.tag = "PrivateKey";
+        }
+        Transform child = newKey.transform.GetChild(0);
+        child.gameObject.tag = "Key";
     }
 
     // Update is called once per frame

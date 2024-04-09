@@ -50,11 +50,22 @@ public class KeyMixer : MonoBehaviour
 
         Color mixedColor = MixColors(keyColor1.GetColor(), keyColor2.GetColor());
         Debug.Log(mixedColor.ToString());
-
-        GameObject mixedKey = Instantiate(mixedKeyPrefab, spawnPoint.position, Quaternion.identity);
-        Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
-        keyRenderer.material.color = mixedColor;
-
+        if (mixedColor == Color.black)
+        {
+            Debug.Log("Not working");
+            Destroy(keys[0]);
+            Destroy(keys[1]);
+        }
+        else
+        {
+            GameObject mixedKey = Instantiate(mixedKeyPrefab, spawnPoint.position, Quaternion.identity);
+            Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
+            keyRenderer.material.color = mixedColor;
+            mixedKey.transform.localScale = new Vector3(2f, 2f, 2f);
+            mixedKey.tag = "PrivateKey";
+            Destroy(keys[0]);
+            Destroy(keys[1]);
+        }
     }
 
 

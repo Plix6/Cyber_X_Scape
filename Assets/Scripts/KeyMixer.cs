@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +9,10 @@ public class KeyMixer : MonoBehaviour
     [SerializeField] private GameObject mixedKeyPrefab;
     [SerializeField] private Transform spawnPoint;
     private Color orange = new Color(1, 90f/255, 0);
+    private Color cyan = new Color(93f/255, 202f / 255, 197f/255);
+    private Color blue = new Color(147f / 255, 187f / 255, 1);
+    private Color orange2 = new Color(1, 190f / 255, 96f / 255);
+    private Color brown = new Color(121f/255, 99f/255, 0);
     private GameObject[] keys = new GameObject[2];
     private int keysInside = 0;
     
@@ -55,15 +60,27 @@ public class KeyMixer : MonoBehaviour
 
     private Color MixColors(Color color1, Color color2)
     {
-        Color mixedColor;
-        if (color1.CompareRGB(Color.yellow) &&  color2.CompareRGB(orange) || color1.CompareRGB(orange) && color2.CompareRGB(Color.yellow)) 
+        if (color1 == Color.yellow &&  color2 == orange || color1 == orange && color2 == Color.yellow) 
         {
-            return mixedColor = new Color(1, 190f/255, 96f/255);
+            return orange2;
+        }
+        else if (color1 == Color.yellow && color2 == cyan || color1 == cyan && color2 == Color.yellow)
+        {
+            return blue;
+        }
+        else if (color1 == blue && color2 == orange || color1 == orange && color2 == blue)
+        {
+            return brown;
+        }
+        else if (color1 == orange2 && color2 == cyan || color1 == cyan && color2 == orange2)
+        {
+            return brown;
         }
         else
         {
-            return 1;
+            Debug.Log("You can't mix those color");
+            return Color.black;
         }
-        
+
     }
 }

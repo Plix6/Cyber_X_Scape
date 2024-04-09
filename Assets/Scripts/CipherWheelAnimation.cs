@@ -64,23 +64,4 @@ public class CipherWheelAnimation : MonoBehaviour
     {
         return curShifts;
     }
-
-    public string ConvertString(string input, int shift)
-    {
-        byte[] codes = Encoding.ASCII.GetBytes(input);
-        byte[] limits = Encoding.ASCII.GetBytes("AZ"); // Get ASCII limit codes
-
-        for (int i = 0; i < codes.Length; i++)
-        {
-            codes[i] += (byte)shift; // Add shift
-            if (codes[i] > limits[1])
-            {
-                codes[i] += (byte)(limits[0] - limits[1] - 1); // If goes over Z, go back to A
-            }
-        }
-
-        string result = Encoding.ASCII.GetString(codes);
-
-        return result;
-    }
 }

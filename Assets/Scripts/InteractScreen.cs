@@ -11,6 +11,8 @@ public class InteractScreen : MonoBehaviour
     [SerializeField] private Camera camera_;
     [SerializeField] private GameObject screenPanel;
     [SerializeField] private TMP_InputField input;
+    [SerializeField] private GameObject inputControlManager;
+    [SerializeField] private TMP_Text placeholder;
 
     private string TAG_AIMED = "ScreenInteractable";
     private float MAX_RANGE = 3f;
@@ -21,11 +23,14 @@ public class InteractScreen : MonoBehaviour
     private GameObject target;
 
     private RetrieveScreenText retriever;
+    private InputControl inputControl;
 
     private void Awake()
     {
         movement = GetComponent<PlayerMovement>();
         mouse = GetComponentInChildren<MouseLook>();
+        inputControl = inputControlManager.GetComponent<InputControl>();
+        input.onValidateInput = inputControl.CustomValidator; // sets custom validator
     }
 
     private void FixedUpdate()
@@ -33,9 +38,9 @@ public class InteractScreen : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(camera_.transform.position, camera_.transform.forward, out hit))
-        {
+        {/*
             Debug.Log("Found an object - distance: " + hit.distance);
-            Debug.DrawRay(camera_.transform.position, camera_.transform.forward * hit.distance, Color.white);
+            Debug.DrawRay(camera_.transform.position, camera_.transform.forward * hit.distance, Color.white);*/
             if (hit.transform.CompareTag(TAG_AIMED) & hit.distance < MAX_RANGE)
             {
                 instruction.gameObject.SetActive(true);
@@ -59,29 +64,37 @@ public class InteractScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (screenDetected & Input.GetKeyUp(KeyCode.E) & !screenActivated)
+        if (screenDetected && Input.GetKeyUp(KeyCode.E) & !screenActivated)
         {
             SetupScreen();
         }
 
-        if (screenActivated & Input.GetKeyDown(KeyCode.Space))
+        if (screenActivated && Input.GetKeyUp(KeyCode.Escape))
         {
             RemoveScreen();
+        }
+
+        if (screenActivated && (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.KeypadEnter)))
+        {
+            RemoveScreen();
+            retriever.setText(input.text);
         }
     }
 
     private void SetupScreen()
     {
-        ToggleScreen();
         retriever = target.GetComponent<RetrieveScreenText>();
-        input.text = retriever.getText();
+        input.text = string.Empty;
+        placeholder.text = retriever.getText();
+        inputControl.SetOptions(retriever.isNumber(), retriever.isShift());
+        ToggleScreen();
         input.ActivateInputField();
     }
 
     private void RemoveScreen()
     {
-        ToggleScreen();
         Cursor.lockState = CursorLockMode.Locked;
+        ToggleScreen();
         input.DeactivateInputField();
     }
 
@@ -91,10 +104,5 @@ public class InteractScreen : MonoBehaviour
         mouse.ToggleMovement();
         screenActivated = !screenActivated;
         screenPanel.SetActive(!screenPanel.activeSelf);
-    }
-
-    public void ValueChanged (string txt)
-    {
-
     }
 }

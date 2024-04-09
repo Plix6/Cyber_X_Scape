@@ -23,4 +23,9 @@ public class RetrieveScreenText : MonoBehaviour
     {
         return shift;
     }
+
+    public void setText(string newText) 
+    {
+        linkedText.text = newText;
+    }
 }

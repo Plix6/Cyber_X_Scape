@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObjectInteraction : MonoBehaviour
 {
-    [SerializeField] private float throwForce = 0.1f;
     [SerializeField] private Camera camera_;
     private Rigidbody objectRigidbody;
     private bool isHolding = false;
@@ -28,7 +27,7 @@ public class ObjectInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out objectRigidbody) && objectRigidbody != null)
             {
                 SetObjectPhysics(true, false, camera_.transform);
-                objectRigidbody.position = camera_.transform.position + camera_.transform.forward * 2f;
+                objectRigidbody.position = camera_.transform.position + camera_.transform.forward * .5f;
                 isHolding = true;
             }
         }
@@ -72,4 +71,5 @@ public class ObjectInteraction : MonoBehaviour
             ThrowObject();
         }
     }
+
 }

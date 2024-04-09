@@ -36,7 +36,6 @@ public class KeyController : MonoBehaviour
     {
         string distributorColor = distributor.gameObject.name;
         Color keyColor;
-        
 
         switch (distributorColor)
         {
@@ -47,19 +46,21 @@ public class KeyController : MonoBehaviour
                 keyColor = new Color(1, 90f/255, 0);
                 break;
             case "blue":
-                keyColor = Color.blue;
+                keyColor = new Color(93f/255, 202f / 255, 197f/255);
                 break;
             case "yellow_2":
                 keyColor = Color.yellow;
                 break;
             default:
-                Debug.LogError("Couleur de distributeur inconny: " + distributorColor);
+                Debug.LogError("Couleur de distributeur inconnu: " + distributorColor);
                 return; 
         }
 
         GameObject newKey = Instantiate(keyPrefab, spawnPoint.transform.position, Quaternion.identity, Distributor.transform);
+        newKey.GetComponent<KeyColor>().SetColor(keyColor);
         Renderer keyRenderer = newKey.GetComponentInChildren<Renderer>();
         keyRenderer.material.color = keyColor;
+        newKey.tag = "Key";
     }
 
     // Update is called once per frame

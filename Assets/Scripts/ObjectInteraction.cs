@@ -13,7 +13,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         objectRigidbody.isKinematic = isKinematic;
         objectRigidbody.useGravity = useGravity;
-        objectRigidbody.transform.parent = parent;
+        objectRigidbody.transform.parent.parent = parent;
     }
 
     void PickUpObject()

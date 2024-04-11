@@ -13,6 +13,7 @@ public class InteractScreen : MonoBehaviour
     [SerializeField] private TMP_InputField input;
     [SerializeField] private GameObject inputControlManager;
     [SerializeField] private TMP_Text placeholder;
+    [SerializeField] private GameObject cipherManagerObject;
 
     private string TAG_AIMED = "ScreenInteractable";
     private float MAX_RANGE = 3f;
@@ -24,6 +25,7 @@ public class InteractScreen : MonoBehaviour
 
     private RetrieveScreenText retriever;
     private InputControl inputControl;
+    private CipherManager cipherManager;
 
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class InteractScreen : MonoBehaviour
         mouse = GetComponentInChildren<MouseLook>();
         inputControl = inputControlManager.GetComponent<InputControl>();
         input.onValidateInput = inputControl.CustomValidator; // sets custom validator
+        cipherManager = cipherManagerObject.GetComponentInChildren<CipherManager>();
     }
 
     private void FixedUpdate()
@@ -78,6 +81,7 @@ public class InteractScreen : MonoBehaviour
         {
             RemoveScreen();
             retriever.setText(input.text);
+            cipherManager.ApplyPanels();
         }
     }
 

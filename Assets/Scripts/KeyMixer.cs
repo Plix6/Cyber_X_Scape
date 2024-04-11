@@ -62,7 +62,7 @@ public class KeyMixer : MonoBehaviour
             Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
             keyRenderer.material.color = mixedColor;
             mixedKey.transform.localScale = new Vector3(2f, 2f, 2f);
-            mixedKey.tag = "PrivateKey";
+            mixedKey.tag = "PrivateKey"; // Rajouter condition pour check couleur
             Destroy(keys[0]);
             Destroy(keys[1]);
         }

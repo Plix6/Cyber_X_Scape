@@ -23,6 +23,7 @@ public class MovingCamera : MonoBehaviour
 
             if (keyTransform != null)
             {
+                other.GetComponent<ObjectInteraction>().DropObject();
                 Destroy(keyTransform.gameObject);
             }
         }

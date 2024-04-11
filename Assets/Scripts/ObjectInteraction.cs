@@ -8,14 +8,14 @@ public class ObjectInteraction : MonoBehaviour
     private Rigidbody objectRigidbody;
     private bool isHolding = false;
 
-    private void SetObjectPhysics(bool isKinematic, bool useGravity, Transform parent)
+    protected void SetObjectPhysics(bool isKinematic, bool useGravity, Transform parent)
     {
         objectRigidbody.isKinematic = isKinematic;
         objectRigidbody.useGravity = useGravity;
         objectRigidbody.transform.parent.parent = parent;
     }
 
-    void PickUpObject()
+    private void PickUpObject()
     {
         float maxRaycastDistance = 5f;
         Vector3 cameraDirection = camera_.transform.forward;
@@ -37,7 +37,7 @@ public class ObjectInteraction : MonoBehaviour
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         if (objectRigidbody != null)
         {
@@ -46,7 +46,7 @@ public class ObjectInteraction : MonoBehaviour
         }
     }
 
-    void ThrowObject()
+    private void ThrowObject()
     {
         if (objectRigidbody != null)
         {

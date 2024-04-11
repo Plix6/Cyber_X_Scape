@@ -19,15 +19,13 @@ public class CipherWheelAnimation : MonoBehaviour
 
     private void Awake()
     {
+        // Random.InitState(45);
+
         for (int i = 0; i < centerWheels.Length; i++)
         {
             centerWheels[i].GetComponent<Renderer>().material.color = wheelColors[i];
         }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         NewRandomShifts(); // Initial rotation
     }
 

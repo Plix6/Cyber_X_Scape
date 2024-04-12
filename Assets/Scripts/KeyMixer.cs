@@ -55,6 +55,15 @@ public class KeyMixer : MonoBehaviour
             Debug.Log("Not working");
             Destroy(keys[0]);
             Destroy(keys[1]);
+        }else if (mixedColor == brown)
+        {
+            GameObject mixedKey = Instantiate(mixedKeyPrefab, spawnPoint.position, Quaternion.identity);
+            Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
+            keyRenderer.material.color = mixedColor;
+            mixedKey.transform.localScale = new Vector3(2f, 2f, 2f);
+            mixedKey.tag = "FinaleKey";
+            Destroy(keys[0]);
+            Destroy(keys[1]);
         }
         else
         {
@@ -71,20 +80,22 @@ public class KeyMixer : MonoBehaviour
 
     private Color MixColors(Color color1, Color color2)
     {
-        if (color1 == Color.yellow &&  color2 == orange || color1 == orange && color2 == Color.yellow) 
+        if (color1.Equals(Color.yellow) && color2.Equals(orange) || color1.Equals(orange) && color2.Equals(Color.yellow))
         {
             return orange2;
         }
-        else if (color1 == Color.yellow && color2 == cyan || color1 == cyan && color2 == Color.yellow)
+        else if (color1.Equals(Color.yellow) && color2.Equals(cyan) || color1.Equals(cyan) && color2.Equals(Color.yellow))
         {
             return blue;
         }
-        else if (color1 == blue && color2 == orange || color1 == orange && color2 == blue)
+        else if (color1.Equals(blue) && color2.Equals(orange) || color1.Equals(orange) && color2.Equals(blue))
         {
+            Debug.Log("marche pas bleu et orange");
             return brown;
         }
-        else if (color1 == orange2 && color2 == cyan || color1 == cyan && color2 == orange2)
+        else if (color1.Equals(orange2) && color2.Equals(cyan) || color1.Equals(cyan) && color2.Equals(orange2))
         {
+            Debug.Log("marche pas orange et cyan");
             return brown;
         }
         else

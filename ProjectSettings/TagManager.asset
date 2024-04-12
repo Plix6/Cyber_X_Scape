@@ -8,6 +8,7 @@ TagManager:
   - Key
   - PrivateKey
   - SecretFile
+  - FinaleKey
   layers:
   - Default
   - TransparentFX

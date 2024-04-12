@@ -14,11 +14,11 @@ public class ObjectInteraction : MonoBehaviour
         objectRigidbody.isKinematic = isKinematic;
         objectRigidbody.useGravity = useGravity;
 
-        if (objectRigidbody.transform.parent != null)
+        if (objectRigidbody.CompareTag("Key"))
         {
             objectRigidbody.transform.parent.parent = parent;
         }
-        else 
+        else if (objectRigidbody.CompareTag("SecretFile"))
         {
             objectRigidbody.transform.parent = parent;
         }

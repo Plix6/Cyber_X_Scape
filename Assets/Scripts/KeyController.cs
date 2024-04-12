@@ -12,6 +12,8 @@ public class KeyController : MonoBehaviour
     private Color orange = new Color(1, 90f / 255, 0);
     private Color cyan = new Color(93f / 255, 202f / 255, 197f / 255);
     public bool Action = false;
+    private bool canInteractWithE = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,7 @@ public class KeyController : MonoBehaviour
         {
             Instruction.SetActive(true);
             Action = true;
+            canInteractWithE = true;
         }
     }
 
@@ -32,6 +35,7 @@ public class KeyController : MonoBehaviour
     {
         Instruction.SetActive(false);
         Action = false;
+        canInteractWithE = false;
     }
 
     private void GenerateKey(GameObject distributor, GameObject keyPrefab, GameObject spawnPoint)

@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class MovingCamera : MonoBehaviour
 {
-    [SerializeField] private Transform target1;
-    [SerializeField] private Transform target2;
     [SerializeField] private float speed = 2f;
-
-    private Transform currentTarget; 
-
-    void Start()
-    {
-        currentTarget = target1;
-    }
-
+    [SerializeField] private GameObject message;
+    [SerializeField] private GameObject spawnPoint;
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject parent;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Transform keyTransform = FindChildWithTag(other.transform, "PrivateKey");
+            Transform keyTransform = FindChildWithTag(other.transform, "SecretFile");
 
             if (keyTransform != null)
             {
+                message.SetActive(true); // Rajouter un wait ou qqch du genre
                 other.GetComponent<ObjectInteraction>().DropObject();
                 Destroy(keyTransform.gameObject);
+                GameObject newKey = Instantiate(prefab, spawnPoint.transform.position, Quaternion.identity, parent.transform);
             }
         }
     }
 
-   
+    private void Start()
+    {
+        message.SetActive(false);
+    }
+
     private Transform FindChildWithTag(Transform parent, string tag)
     {
         foreach (Transform child in parent)
@@ -47,16 +47,5 @@ public class MovingCamera : MonoBehaviour
         }
 
         return null;
-    }
-
-
-void Update()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
-
-        if (transform.position == currentTarget.position)
-        {
-            currentTarget = (currentTarget == target1) ? target2 : target1;
-        }
     }
 }

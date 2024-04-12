@@ -7,12 +7,31 @@ public class ObjectInteraction : MonoBehaviour
     [SerializeField] private Camera camera_;
     private Rigidbody objectRigidbody;
     private bool isHolding = false;
+    public bool hasFinished = false;
 
-    protected void SetObjectPhysics(bool isKinematic, bool useGravity, Transform parent)
+    private void SetObjectPhysics(bool isKinematic, bool useGravity, Transform parent)
     {
         objectRigidbody.isKinematic = isKinematic;
         objectRigidbody.useGravity = useGravity;
-        objectRigidbody.transform.parent.parent = parent;
+
+        if (objectRigidbody.transform.parent != null)
+        {
+            objectRigidbody.transform.parent.parent = parent;
+        }
+        else 
+        {
+            objectRigidbody.transform.parent = parent;
+        }
+    }
+
+    public void setHasFinished()
+    {
+        hasFinished = true;
+    }
+
+    public bool getHasFinished()
+    {
+        return hasFinished;
     }
 
     private void PickUpObject()

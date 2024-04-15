@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KeyMixer : MonoBehaviour
@@ -42,42 +43,47 @@ public class KeyMixer : MonoBehaviour
 
         KeyColor keyColor1 = keys[0].GetComponentInParent<KeyColor>();
         KeyColor keyColor2 = keys[1].GetComponentInParent<KeyColor>();
+
         colorList.Add(keyColor1.GetColor());
         colorList.Add(keyColor2.GetColor());
+
+        Debug.Log("Color 1 : " + colorList[0] + "; Color 2 : " + colorList[1]);
+
         if (keyColor1 == null || keyColor2 == null)
         {
-            Debug.LogError("L'un des objets clés ne possède pas le composant KeyColor.");
+            Debug.LogError("One key color missing");
             return;
         }
 
         Color mixedColor = MixColors(keyColor1.GetColor(), keyColor2.GetColor());
         colorList.Clear();
-        Debug.Log(mixedColor.ToString());
+        Debug.Log("New key color : " + mixedColor.ToString());
+
         if (mixedColor == Color.black)
         {
-            Debug.Log("Not working");
+            Debug.Log("New key is black");
             Destroy(keys[0]);
             Destroy(keys[1]);
-        }else if (mixedColor == brown)
+            return;
+        }
+
+        GameObject mixedKey = Instantiate(mixedKeyPrefab, spawnPoint.position, Quaternion.identity);
+
+        if (mixedColor == brown)
         {
-            GameObject mixedKey = Instantiate(mixedKeyPrefab, spawnPoint.position, Quaternion.identity);
-            Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
-            keyRenderer.material.color = mixedColor;
-            mixedKey.transform.localScale = new Vector3(2f, 2f, 2f);
             mixedKey.tag = "FinaleKey";
-            Destroy(keys[0]);
-            Destroy(keys[1]);
         }
         else
         {
-            GameObject mixedKey = Instantiate(mixedKeyPrefab, spawnPoint.position, Quaternion.identity);
-            Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
-            keyRenderer.material.color = mixedColor;
-            mixedKey.transform.localScale = new Vector3(2f, 2f, 2f);
             mixedKey.tag = "PrivateKey"; 
-            Destroy(keys[0]);
-            Destroy(keys[1]);
         }
+
+        Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
+        keyRenderer.material.color = mixedColor;
+        mixedKey.GetComponent<KeyColor>().SetColor(mixedColor);
+        mixedKey.transform.localScale = new Vector3(2f, 2f, 2f);
+        Destroy(keys[0]);
+        Destroy(keys[1]);
     }
 
 
@@ -85,20 +91,22 @@ public class KeyMixer : MonoBehaviour
     {
         if (colorList.Contains(Color.yellow) && colorList.Contains(orange)) // yellow & orange
         {
+            Debug.Log("yellow + orange = orange2 (+ cyan = brown)");
             return orange2;
         }
         else if (colorList.Contains(Color.yellow) && colorList.Contains(cyan)) //Yellow & cyan
         {
+            Debug.Log("yellow + cyan = blue (+ orange = brown)");
             return blue;
         }
         else if (colorList.Contains(blue) && colorList.Contains(orange)) // blue & orage
         {
-            Debug.Log("marche pas bleu et orange");
+            Debug.Log("blue + orange");
             return brown;
         }
         else if (colorList.Contains(orange2) && colorList.Contains(cyan)) // orange2 & cyan
         {
-            Debug.Log("marche pas orange et cyan");
+            Debug.Log("cyan + orange2");
             return brown;
         }
         else

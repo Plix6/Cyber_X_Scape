@@ -24,7 +24,16 @@ public class HallWayDoorDetection : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            animator.SetBool("open", false);
+            StartCoroutine(Delay());
         }
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1f);
+
+        animator.SetBool("open", false);
+
+        yield return null;
     }
 }

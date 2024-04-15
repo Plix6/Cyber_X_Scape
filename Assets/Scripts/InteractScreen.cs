@@ -27,6 +27,8 @@ public class InteractScreen : MonoBehaviour
     private InputControl inputControl;
     private CipherManager cipherManager;
 
+    private InterfaceSound interfaceSound;
+
     private void Awake()
     {
         movement = GetComponent<PlayerMovement>();
@@ -44,7 +46,7 @@ public class InteractScreen : MonoBehaviour
         {/*
             Debug.Log("Found an object - distance: " + hit.distance);
             Debug.DrawRay(camera_.transform.position, camera_.transform.forward * hit.distance, Color.white);*/
-            if (hit.transform.CompareTag(TAG_AIMED) & hit.distance < MAX_RANGE)
+            if (hit.transform.CompareTag(TAG_AIMED) && hit.distance < MAX_RANGE)
             {
                 instruction.gameObject.SetActive(true);
                 screenDetected = true;
@@ -67,7 +69,7 @@ public class InteractScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (screenDetected && Input.GetKeyUp(KeyCode.E) & !screenActivated)
+        if (screenDetected && Input.GetKeyUp(KeyCode.E) && !screenActivated)
         {
             SetupScreen();
         }
@@ -87,6 +89,9 @@ public class InteractScreen : MonoBehaviour
 
     private void SetupScreen()
     {
+        interfaceSound = target.GetComponent<InterfaceSound>();
+        interfaceSound.ToggleAudio();
+        interfaceSound.PlayAudio();
         retriever = target.GetComponent<RetrieveScreenText>();
         input.text = string.Empty;
         placeholder.text = retriever.getText();
@@ -97,6 +102,8 @@ public class InteractScreen : MonoBehaviour
 
     private void RemoveScreen()
     {
+        interfaceSound.ToggleAudio();
+        interfaceSound.PlayAudio();
         Cursor.lockState = CursorLockMode.Locked;
         ToggleScreen();
         input.DeactivateInputField();

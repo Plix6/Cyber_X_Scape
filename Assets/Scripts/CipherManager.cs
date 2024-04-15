@@ -14,6 +14,13 @@ public class CipherManager : MonoBehaviour
     [SerializeField] private GameObject door;
     [SerializeField] private GameObject[] notes;
     [SerializeField] private GameObject CipherWheelAnimatorParent;
+
+    [SerializeField] private GameObject validationSound;
+    [SerializeField] private AudioClip success;
+    [SerializeField] private AudioClip failure;
+
+    private AudioSource audioSource;
+
     private TMP_Text[] noteTexts;
     private CipherWheelAnimation cipherAnimation;
 
@@ -44,6 +51,8 @@ public class CipherManager : MonoBehaviour
         cipherAnimation = CipherWheelAnimatorParent.GetComponentInChildren<CipherWheelAnimation>();
 
         ChooseCode();
+
+        audioSource = validationSound.GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -95,10 +104,14 @@ public class CipherManager : MonoBehaviour
         if (code.text == doorCode)
         {
             door.GetComponent<Animator>().SetBool("open", true);
+            audioSource.clip = success;
+            audioSource.Play();
         }
         else
         {
             door.GetComponent<Animator>().SetBool("open", false);
+            audioSource.clip = failure;
+            audioSource.Play();
         }
     }
 }

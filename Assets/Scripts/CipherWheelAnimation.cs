@@ -6,6 +6,7 @@ using UnityEngine;
 public class CipherWheelAnimation : MonoBehaviour
 {
     [SerializeField] private GameObject[] centerWheels;
+    [SerializeField] private GameObject wheelSound;
     [SerializeField] private float duration;
     private Color[] wheelColors = { 
         new (205 / 255f, 28 / 255f, 19/255f, 0.8f), //red
@@ -51,6 +52,7 @@ public class CipherWheelAnimation : MonoBehaviour
             curRotations[i] = rotationChange + curRotations[i];
 
             LeanTween.cancel(centerWheels[i]);
+            wheelSound.GetComponent<AudioSource>().enabled = true;
             LeanTween.rotateAroundLocal(centerWheels[i],
                 Vector3.back,
                 rotationChange,
@@ -61,5 +63,14 @@ public class CipherWheelAnimation : MonoBehaviour
     public int[] GetShifts()
     {
         return curShifts;
+    }
+
+    private IEnumerator stopSound()
+    {
+        yield return new WaitForSeconds(duration);
+
+        wheelSound.GetComponent<AudioSource>().enabled = false;
+
+        yield return null;
     }
 }

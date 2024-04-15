@@ -14,9 +14,10 @@ public class LockController : MonoBehaviour
     private Collider player;
     private void OnTriggerEnter(Collider other)
     {
-        player = other;
+        Debug.Log(other.tag);
         if (other.transform.CompareTag("Player"))
         {
+            player = other;
             message1.SetActive(true);
             canInteractWith = true;
         }
@@ -43,7 +44,7 @@ public class LockController : MonoBehaviour
                 objectInteraction.DropObject();
             }
             Destroy(FinaleKey.gameObject);
-            playerTransform.GetComponent<ObjectInteraction>().setHasFinished();
+            Destroy(camera_field);
         }
         else
         {
@@ -61,12 +62,11 @@ public class LockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && canInteractWith && hasFinaleKey)
+        if (Input.GetKeyDown(KeyCode.E) && canInteractWith)
         {
             if (player.CompareTag("Player"))
             {
                 CheckFinaleKey(player.transform);
-                Destroy(camera_field);
             }
         }
     }

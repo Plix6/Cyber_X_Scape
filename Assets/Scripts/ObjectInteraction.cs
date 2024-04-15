@@ -46,7 +46,7 @@ public class ObjectInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent(out objectRigidbody) && objectRigidbody != null)
             {
                 SetObjectPhysics(true, false, camera_.transform);
-                objectRigidbody.position = camera_.transform.position + camera_.transform.forward * .5f;
+                objectRigidbody.position = camera_.transform.position + camera_.transform.forward;
                 isHolding = true;
             }
         }
@@ -87,7 +87,7 @@ public class ObjectInteraction : MonoBehaviour
         }
         else if (isHolding && Input.GetMouseButtonDown(0))
         {
-            ThrowObject();
+            ThrowObject();;
         }
     }
 

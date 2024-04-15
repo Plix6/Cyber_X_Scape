@@ -15,7 +15,8 @@ public class KeyMixer : MonoBehaviour
     private Color brown = new Color(121f/255, 99f/255, 0);
     private GameObject[] keys = new GameObject[2];
     private int keysInside = 0;
-    
+    private ArrayList colorList = new();
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Key"))
@@ -41,7 +42,8 @@ public class KeyMixer : MonoBehaviour
 
         KeyColor keyColor1 = keys[0].GetComponentInParent<KeyColor>();
         KeyColor keyColor2 = keys[1].GetComponentInParent<KeyColor>();
-
+        colorList.Add(keyColor1.GetColor());
+        colorList.Add(keyColor2.GetColor());
         if (keyColor1 == null || keyColor2 == null)
         {
             Debug.LogError("L'un des objets clés ne possède pas le composant KeyColor.");
@@ -49,6 +51,7 @@ public class KeyMixer : MonoBehaviour
         }
 
         Color mixedColor = MixColors(keyColor1.GetColor(), keyColor2.GetColor());
+        colorList.Clear();
         Debug.Log(mixedColor.ToString());
         if (mixedColor == Color.black)
         {
@@ -71,7 +74,7 @@ public class KeyMixer : MonoBehaviour
             Renderer keyRenderer = mixedKey.GetComponentInChildren<Renderer>();
             keyRenderer.material.color = mixedColor;
             mixedKey.transform.localScale = new Vector3(2f, 2f, 2f);
-            mixedKey.tag = "PrivateKey"; // Rajouter condition pour check couleur
+            mixedKey.tag = "PrivateKey"; 
             Destroy(keys[0]);
             Destroy(keys[1]);
         }
@@ -80,20 +83,20 @@ public class KeyMixer : MonoBehaviour
 
     private Color MixColors(Color color1, Color color2)
     {
-        if (color1.Equals(Color.yellow) && color2.Equals(orange) || color1.Equals(orange) && color2.Equals(Color.yellow))
+        if (colorList.Contains(Color.yellow) && colorList.Contains(orange)) // yellow & orange
         {
             return orange2;
         }
-        else if (color1.Equals(Color.yellow) && color2.Equals(cyan) || color1.Equals(cyan) && color2.Equals(Color.yellow))
+        else if (colorList.Contains(Color.yellow) && colorList.Contains(cyan)) //Yellow & cyan
         {
             return blue;
         }
-        else if (color1.Equals(blue) && color2.Equals(orange) || color1.Equals(orange) && color2.Equals(blue))
+        else if (colorList.Contains(blue) && colorList.Contains(orange)) // blue & orage
         {
             Debug.Log("marche pas bleu et orange");
             return brown;
         }
-        else if (color1.Equals(orange2) && color2.Equals(cyan) || color1.Equals(cyan) && color2.Equals(orange2))
+        else if (colorList.Contains(orange2) && colorList.Contains(cyan)) // orange2 & cyan
         {
             Debug.Log("marche pas orange et cyan");
             return brown;

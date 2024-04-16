@@ -75,6 +75,7 @@ public class DialogManager : MonoBehaviour
             playerDialog.Stop();
             playerDialog.clip = endDialog;
             playerDialog.Play();
+            hallwayTrigger.ToggleExit();
         }
         roomFinished = true;
     }

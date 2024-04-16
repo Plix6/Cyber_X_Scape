@@ -2390,6 +2390,7 @@ MonoBehaviour:
   validationSound: {fileID: 850138904}
   success: {fileID: 8300000, guid: cafa7b18c376cc542bc41d2e89be9372, type: 3}
   failure: {fileID: 8300000, guid: 3ba928859b1df044faf4f69103b42269, type: 3}
+  dialogManager: {fileID: 932758495}
 --- !u!4 &266671486
 Transform:
   m_ObjectHideFlags: 0

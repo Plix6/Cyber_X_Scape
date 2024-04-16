@@ -19,6 +19,10 @@ public class CipherManager : MonoBehaviour
     [SerializeField] private AudioClip success;
     [SerializeField] private AudioClip failure;
 
+    [SerializeField] private GameObject dialogManager;
+
+    private DialogManager manager;
+
     private AudioSource audioSource;
 
     private TMP_Text[] noteTexts;
@@ -51,6 +55,8 @@ public class CipherManager : MonoBehaviour
         cipherAnimation = CipherWheelAnimatorParent.GetComponentInChildren<CipherWheelAnimation>();
 
         audioSource = validationSound.GetComponent<AudioSource>();
+
+        manager = dialogManager.GetComponent<DialogManager>();
     }
 
     private void Start()
@@ -110,6 +116,7 @@ public class CipherManager : MonoBehaviour
             door.GetComponent<Animator>().SetBool("open", true);
             audioSource.clip = success;
             audioSource.Play();
+            manager.FinishRoom();
         }
         else
         {

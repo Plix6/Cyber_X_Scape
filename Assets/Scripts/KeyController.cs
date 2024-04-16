@@ -9,11 +9,16 @@ public class KeyController : MonoBehaviour
     [SerializeField] private GameObject Distributor;
     [SerializeField] private GameObject Key;
     [SerializeField] private GameObject SpawnPoint;
+    private AudioSource sound;
     private Color orange = new Color(1, 90f / 255, 0);
     private Color cyan = new Color(93f / 255, 202f / 255, 197f / 255);
     public bool Action = false;
     private bool canInteractWith = false;
 
+    private void Awake()
+    {
+        sound = GetComponentInChildren<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +41,12 @@ public class KeyController : MonoBehaviour
         Instruction.SetActive(false);
         Action = false;
         canInteractWith = false;
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1);
+        yield return null;
     }
 
     private void GenerateKey(GameObject distributor, GameObject keyPrefab, GameObject spawnPoint)
@@ -61,6 +72,8 @@ public class KeyController : MonoBehaviour
                 Debug.LogError("Couleur de distributeur inconnu: " + distributorColor);
                 return; 
         }
+        StartCoroutine(Delay());
+        sound.Play();
         GameObject newKey = Instantiate(keyPrefab, spawnPoint.transform.position, Quaternion.identity, Distributor.transform);
         newKey.GetComponent<KeyColor>().SetColor(keyColor);
         Renderer keyRenderer = newKey.GetComponentInChildren<Renderer>();

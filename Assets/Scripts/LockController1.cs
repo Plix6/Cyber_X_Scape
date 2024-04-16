@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
-public class LockController : MonoBehaviour
+public class LockController1 : MonoBehaviour
 {
     [SerializeField] private GameObject message1; // Appuyer pour
     [SerializeField] private GameObject message2; // Vous n'avez pas la clé
@@ -57,7 +57,7 @@ public class LockController : MonoBehaviour
         Transform FinaleKey = FindChildWithTag(playerTransform, "FinaleKey");
         Debug.Log(FinaleKey);
 
-        if (FinaleKey == null || player.GetComponent<ObjectInteraction>().getKey_1())
+        if (FinaleKey == null || player.GetComponent<ObjectInteraction>().getKey_2())
         {
             message2.SetActive(true);
             return;
@@ -70,9 +70,9 @@ public class LockController : MonoBehaviour
             objectInteraction.DropObject();
             Destroy(FinaleKey.gameObject);
             audio[0].Play();
-            player.GetComponent<ObjectInteraction>().setKey_1();
+            player.GetComponent<ObjectInteraction>().setKey_2();
 
-            if (player.GetComponent<ObjectInteraction>().getKey_2())
+            if (player.GetComponent<ObjectInteraction>().getKey_1())
             {
                 audio[1].Play();
                 StartCoroutine(Delay());

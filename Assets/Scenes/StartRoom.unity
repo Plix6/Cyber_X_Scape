@@ -1909,9 +1909,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35affc9f07bdb1146bde122cfc4d96fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Instruction: {fileID: 530599008}
+  instruction: {fileID: 530599008}
   Animation: {fileID: 1407095813}
-  Action: 0
+  action: 0
 --- !u!1001 &1062195902
 PrefabInstance:
   m_ObjectHideFlags: 0

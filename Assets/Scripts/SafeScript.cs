@@ -7,10 +7,16 @@ public class SafeScript : MonoBehaviour
 {
     [SerializeField] private GameObject message1;
     [SerializeField] private GameObject message2;
+    [SerializeField] public GameObject Animation;
+    private Animator animator;
     private Collider player;
     private bool hasSecretFile = false;
-    private bool canInteractWithE = false; 
+    private bool canInteractWithE = false;
 
+    private void Awake()
+    {
+        animator = Animation.GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -59,7 +65,7 @@ public class SafeScript : MonoBehaviour
                 objectInteraction.DropObject();
             }
             Destroy(secretFile.gameObject);
-            playerTransform.GetComponent<ObjectInteraction>().setHasFinished();
+            animator.SetBool("open", !animator.GetBool("open"));
         }
         else
         {

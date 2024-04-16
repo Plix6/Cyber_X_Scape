@@ -7,7 +7,10 @@ public class SafeScript : MonoBehaviour
 {
     [SerializeField] private GameObject message1;
     [SerializeField] private GameObject message2;
-    [SerializeField] public GameObject Animation;
+    [SerializeField] private GameObject Animation;
+    [SerializeField] private GameObject dialogManager;
+    private AudioSource sound;
+    private DialogManager1 dm1;
     private Animator animator;
     private Collider player;
     private bool hasSecretFile = false;
@@ -15,6 +18,8 @@ public class SafeScript : MonoBehaviour
 
     private void Awake()
     {
+        dm1 = dialogManager.GetComponent<DialogManager1>();
+        sound = GetComponentInChildren<AudioSource>();
         animator = Animation.GetComponent<Animator>();
     }
 
@@ -66,6 +71,8 @@ public class SafeScript : MonoBehaviour
             }
             Destroy(secretFile.gameObject);
             animator.SetBool("open", !animator.GetBool("open"));
+            sound.Play();
+            dm1.FinishRoom();
         }
         else
         {

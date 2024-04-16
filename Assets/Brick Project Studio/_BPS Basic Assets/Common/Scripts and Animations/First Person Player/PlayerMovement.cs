@@ -7,6 +7,8 @@ namespace SojaExiles
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] private GameObject playerSound;
+        private AudioSource playerAudioSource;
 
         public CharacterController controller;
 
@@ -15,9 +17,16 @@ namespace SojaExiles
 
         private bool activated = true;
 
-        Vector3 velocity;
+        private Vector3 velocity;
 
-        bool isGrounded;
+        private bool isGrounded;
+        private bool isMoving;
+
+
+        private void Awake()
+        {
+            playerAudioSource = playerSound.GetComponent<AudioSource>();
+        }
 
         // Update is called once per frame
         void Update()
@@ -35,6 +44,17 @@ namespace SojaExiles
                 velocity.y += gravity * Time.deltaTime;
 
                 controller.Move(velocity * Time.deltaTime);
+
+                if (!isMoving && move != Vector3.zero)
+                {
+                    isMoving = true;
+                    playerAudioSource.Play();
+                }
+                else if (isMoving && move == Vector3.zero)
+                {
+                    isMoving = false;
+                    playerAudioSource.Stop();
+                }
             }
 
         }

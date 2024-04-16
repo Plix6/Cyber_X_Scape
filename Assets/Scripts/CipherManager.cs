@@ -50,13 +50,17 @@ public class CipherManager : MonoBehaviour
 
         cipherAnimation = CipherWheelAnimatorParent.GetComponentInChildren<CipherWheelAnimation>();
 
-        ChooseCode();
-
         audioSource = validationSound.GetComponent<AudioSource>();
     }
 
     private void Start()
     {
+    }
+
+    public void InitializeCode()
+    {
+        cipherAnimation.NewRandomShifts();
+        ChooseCode();
         shifts = cipherAnimation.GetShifts();
         doorCode = correspondingValues[indexCode[0]] + correspondingValues[indexCode[1]] + correspondingValues[indexCode[2]];
 

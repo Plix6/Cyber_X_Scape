@@ -15,4 +15,9 @@ public class HallwayTrigger : MonoBehaviour
             SceneManager.LoadScene(newSceneName);
         }
     }
+
+    public void ToggleExit()
+    {
+        isExit = !isExit;
+    }
 }

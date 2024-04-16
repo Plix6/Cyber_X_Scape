@@ -6,7 +6,6 @@ using UnityEngine;
 public class CipherWheelAnimation : MonoBehaviour
 {
     [SerializeField] private GameObject[] centerWheels;
-    [SerializeField] private GameObject wheelSound;
     [SerializeField] private float duration;
     private Color[] wheelColors = { 
         new (205 / 255f, 28 / 255f, 19/255f, 0.8f), //red
@@ -16,18 +15,20 @@ public class CipherWheelAnimation : MonoBehaviour
 
     private int[] curShifts = { 0, 0, 0 };
     private float[] curRotations = { 0f, 0f, 0f };
+
+    private AudioSource wheelSound;
     // gameObj.GetComponent<Renderer>().material.color = new Color(0, 204, 102);
 
     private void Awake()
     {
+        wheelSound = GetComponentInChildren<AudioSource>();
+
         // Random.InitState(45);
 
         for (int i = 0; i < centerWheels.Length; i++)
         {
             centerWheels[i].GetComponent<Renderer>().material.color = wheelColors[i];
         }
-
-        NewRandomShifts(); // Initial rotation
     }
 
     public void NewRandomShifts()
@@ -52,7 +53,8 @@ public class CipherWheelAnimation : MonoBehaviour
             curRotations[i] = rotationChange + curRotations[i];
 
             LeanTween.cancel(centerWheels[i]);
-            wheelSound.GetComponent<AudioSource>().enabled = true;
+            wheelSound.Play();
+            StartCoroutine(StopSound());
             LeanTween.rotateAroundLocal(centerWheels[i],
                 Vector3.back,
                 rotationChange,
@@ -65,11 +67,11 @@ public class CipherWheelAnimation : MonoBehaviour
         return curShifts;
     }
 
-    private IEnumerator stopSound()
+    private IEnumerator StopSound()
     {
         yield return new WaitForSeconds(duration);
 
-        wheelSound.GetComponent<AudioSource>().enabled = false;
+        wheelSound.Stop();
 
         yield return null;
     }

@@ -29,6 +29,8 @@ public class InteractScreen : MonoBehaviour
 
     private InterfaceSound interfaceSound;
 
+    private bool active = false;
+
     private void Awake()
     {
         movement = GetComponent<PlayerMovement>();
@@ -69,7 +71,7 @@ public class InteractScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (screenDetected && Input.GetKeyUp(KeyCode.E) && !screenActivated)
+        if (active && screenDetected && Input.GetKeyUp(KeyCode.E) && !screenActivated)
         {
             SetupScreen();
         }
@@ -115,5 +117,10 @@ public class InteractScreen : MonoBehaviour
         mouse.ToggleMovement();
         screenActivated = !screenActivated;
         screenPanel.SetActive(!screenPanel.activeSelf);
+    }
+
+    public void ToggleActive()
+    {
+        active = !active;
     }
 }

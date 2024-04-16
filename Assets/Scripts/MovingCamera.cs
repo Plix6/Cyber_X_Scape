@@ -25,6 +25,11 @@ public class MovingCamera : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        message.SetActive(false);
+    }
+
     private void Start()
     {
         message.SetActive(false);

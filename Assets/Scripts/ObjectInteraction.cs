@@ -7,8 +7,8 @@ public class ObjectInteraction : MonoBehaviour
     [SerializeField] private Camera camera_;
     private Rigidbody objectRigidbody;
     private bool isHolding = false;
-    public bool hasFinished = false;
-
+    public bool key_1 = false;
+    public bool key_2 = false;
     private void SetObjectPhysics(bool isKinematic, bool useGravity, Transform parent)
     {
         objectRigidbody.isKinematic = isKinematic;
@@ -24,14 +24,24 @@ public class ObjectInteraction : MonoBehaviour
         }
     }
 
-    public void setHasFinished()
+    public void setKey_1()
     {
-        hasFinished = true;
+        key_1 = true;
     }
 
-    public bool getHasFinished()
+    public bool getKey_1()
     {
-        return hasFinished;
+        return key_1;
+    }
+
+    public void setKey_2()
+    {
+        key_2 = true;
+    }
+
+    public bool getKey_2()
+    {
+        return key_2;
     }
 
     private void PickUpObject()

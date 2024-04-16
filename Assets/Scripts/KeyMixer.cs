@@ -14,9 +14,15 @@ public class KeyMixer : MonoBehaviour
     private Color blue = new Color(147f / 255, 187f / 255, 1);
     private Color orange2 = new Color(1, 190f / 255, 96f / 255);
     private Color brown = new Color(121f/255, 99f/255, 0);
+    private AudioSource sound;
     private GameObject[] keys = new GameObject[2];
     private int keysInside = 0;
     private ArrayList colorList = new();
+
+    private void Awake()
+    {
+        sound = GetComponentInChildren<AudioSource>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -68,10 +74,14 @@ public class KeyMixer : MonoBehaviour
         }
 
         GameObject mixedKey = Instantiate(mixedKeyPrefab, spawnPoint.position, Quaternion.identity);
+        sound.Play();
 
         if (mixedColor == brown)
         {
             mixedKey.tag = "FinaleKey";
+        }else if (mixedColor == blue || mixedColor == orange2)
+        {
+            mixedKey.tag = "PersonalKey";
         }
         else
         {

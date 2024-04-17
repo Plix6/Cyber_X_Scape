@@ -49,7 +49,7 @@ public class CipherWheelAnimation : MonoBehaviour
     {
         for (int i = 0; i < centerWheels.Length; i++)
         {
-            float rotationChange = -1 * (360f / 26) * curShifts[i] - curRotations[i];
+            float rotationChange = (360f / 26) * curShifts[i] - curRotations[i];
             curRotations[i] = rotationChange + curRotations[i];
 
             LeanTween.cancel(centerWheels[i]);

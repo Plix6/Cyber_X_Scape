@@ -78,6 +78,7 @@ public class KeyController : MonoBehaviour
         newKey.GetComponent<KeyColor>().SetColor(keyColor);
         Renderer keyRenderer = newKey.GetComponentInChildren<Renderer>();
         keyRenderer.material.color = keyColor;
+        newKey.tag = "Key";
         if (keyColor == orange || keyColor == cyan)
         {
             newKey.tag = "PrivateKey";

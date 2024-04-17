@@ -6,6 +6,7 @@ public class DialogManager1 : MonoBehaviour
 {
     [SerializeField] private GameObject triggerHallwayExit;
     [SerializeField] private GameObject playerDialogObject;
+    [SerializeField] private GameObject instruction;
 
     [SerializeField] private AudioClip startDialog;
     [SerializeField] private AudioClip hintDialog;
@@ -23,6 +24,7 @@ public class DialogManager1 : MonoBehaviour
     {
         hallwayTrigger = triggerHallwayExit.GetComponent<HallwayTrigger>();
         playerDialog = playerDialogObject.GetComponent<AudioSource>();
+        instruction.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -31,11 +33,20 @@ public class DialogManager1 : MonoBehaviour
 
         if (!roomStarted)
         {
+            StartCoroutine(Delay());
             playerDialog.clip = startDialog;
             playerDialog.Play();
             StartCoroutine(HintDelay());
         }
         roomStarted = true;
+    }
+
+    private IEnumerator Delay()
+    {
+        instruction.SetActive(true);
+        yield return new WaitForSeconds(6);
+        instruction.SetActive(false);
+        yield return null;
     }
 
     private IEnumerator HintDelay()

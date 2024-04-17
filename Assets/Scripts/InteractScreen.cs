@@ -14,6 +14,8 @@ public class InteractScreen : MonoBehaviour
     [SerializeField] private GameObject inputControlManager;
     [SerializeField] private TMP_Text placeholder;
     [SerializeField] private GameObject cipherManagerObject;
+    [SerializeField] private GameObject clickInstruction;
+
 
     private string TAG_AIMED = "ScreenInteractable";
     private float MAX_RANGE = 3f;
@@ -66,6 +68,7 @@ public class InteractScreen : MonoBehaviour
     void Start()
     {
         screenPanel.SetActive(false);
+        StartCoroutine(Delay());
     }
 
     // Update is called once per frame
@@ -122,5 +125,12 @@ public class InteractScreen : MonoBehaviour
     public void ToggleActive()
     {
         active = !active;
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(6);
+        clickInstruction.SetActive(false);
+        yield return null;
     }
 }

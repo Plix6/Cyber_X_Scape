@@ -15835,11 +15835,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1411246628388692929, guid: 3a788026cef33bf47b0530f38d209772, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.52
+      value: -17.687
       objectReference: {fileID: 0}
     - target: {fileID: 1411246628388692929, guid: 3a788026cef33bf47b0530f38d209772, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.13
+      value: 5.514
       objectReference: {fileID: 0}
     - target: {fileID: 1411246628388692929, guid: 3a788026cef33bf47b0530f38d209772, type: 3}
       propertyPath: m_LocalPosition.z
@@ -18904,7 +18904,7 @@ MonoBehaviour:
   startDialog: {fileID: 8300000, guid: 9551ebcd9b50d0c4eb9e25d0116dccb4, type: 3}
   hintDialog: {fileID: 8300000, guid: 3369592ca58f2e648805dfb97224fa09, type: 3}
   endDialog: {fileID: 8300000, guid: 73584b12ed307dc4b97428ef5bec7fea, type: 3}
-  minutesBeforeHint: 2
+  minutesBeforeHint: 6
 --- !u!65 &1902316894
 BoxCollider:
   m_ObjectHideFlags: 0

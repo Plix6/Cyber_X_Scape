@@ -9,6 +9,7 @@ public class KeyMixer : MonoBehaviour
 {
     [SerializeField] private GameObject mixedKeyPrefab;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject player;
     private Color orange = new Color(1, 90f/255, 0);
     private Color cyan = new Color(93f/255, 202f / 255, 197f/255);
     private Color blue = new Color(147f / 255, 187f / 255, 1);
@@ -28,6 +29,7 @@ public class KeyMixer : MonoBehaviour
     {
         if (other.CompareTag("Key"))
         {
+            player.GetComponent<ObjectInteraction>().DropObject();
             GameObject temp = other.gameObject;
             keys[keysInside] = temp;
             keysInside++;

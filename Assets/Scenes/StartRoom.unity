@@ -3696,6 +3696,10 @@ PrefabInstance:
       propertyPath: playerSound
       value: 
       objectReference: {fileID: 1201862509}
+    - target: {fileID: 1927095934754023318, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1927095934754023319, guid: a9b081014bad86f4a80b60284279d21b, type: 3}
       propertyPath: mouseXSensitivity
       value: 150

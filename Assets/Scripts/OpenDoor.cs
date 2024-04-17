@@ -9,6 +9,7 @@ public class OpenDoor : MonoBehaviour
     private Animator animator;
     //public AudioSource DoorSound;
     public bool action = false;
+    public bool active = false;
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class OpenDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (active && other.CompareTag("Player"))
         {
             instruction.SetActive(true);
             action = true;
@@ -41,7 +42,6 @@ public class OpenDoor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && action)
         {
             instruction.SetActive(false);
-            //DoorSound.Play();
             action = false;
             animator.SetBool("open", !animator.GetBool("open"));
         }

@@ -113,16 +113,27 @@ public class CipherManager : MonoBehaviour
 
         if (code.text == doorCode)
         {
-            door.GetComponent<Animator>().SetBool("open", true);
             audioSource.clip = success;
             audioSource.Play();
-            manager.FinishRoom();
+            manager.FinishRoom(); 
+            if (!door.GetComponent<Animator>().GetBool("open"))
+            {
+                StartCoroutine(Delay());
+            }
         }
         else
         {
-            door.GetComponent<Animator>().SetBool("open", false);
             audioSource.clip = failure;
             audioSource.Play();
         }
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(manager.GetEndLength());
+
+        door.GetComponent<Animator>().SetBool("open", true);
+
+        yield return null;
     }
 }

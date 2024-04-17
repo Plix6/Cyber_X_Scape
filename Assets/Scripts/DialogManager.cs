@@ -79,5 +79,10 @@ public class DialogManager : MonoBehaviour
         }
         roomFinished = true;
     }
+
+    public float GetEndLength()
+    {
+        return endDialog.length;
+    }
 }
 

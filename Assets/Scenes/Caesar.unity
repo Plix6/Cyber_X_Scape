@@ -2672,6 +2672,10 @@ PrefabInstance:
       value: Diffie-Hellman
       objectReference: {fileID: 0}
     - target: {fileID: 2542864537629097683, guid: 10ba1689a33c7d140b08be70b7cc0255, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2542864537629097683, guid: 10ba1689a33c7d140b08be70b7cc0255, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.09892845
       objectReference: {fileID: 0}
@@ -16816,6 +16820,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1191794137}
     m_Modifications:
+    - target: {fileID: 2542864537629097683, guid: 10ba1689a33c7d140b08be70b7cc0255, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.02
+      objectReference: {fileID: 0}
     - target: {fileID: 2542864537629097683, guid: 10ba1689a33c7d140b08be70b7cc0255, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10892868

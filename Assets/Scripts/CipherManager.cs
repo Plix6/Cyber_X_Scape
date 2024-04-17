@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -20,6 +21,8 @@ public class CipherManager : MonoBehaviour
 
     [SerializeField] private GameObject dialogManager;
 
+    [SerializeField] private TMP_Text cheatCode;
+
     private DialogManager manager;
 
     private AudioSource audioSource;
@@ -41,7 +44,7 @@ public class CipherManager : MonoBehaviour
 
     private void Awake()
     {
-        Random.InitState(46);
+        UnityEngine.Random.InitState((int)DateTime.Now.Ticks);
 
         noteTexts = new TMP_Text[notes.Length];
 
@@ -74,16 +77,14 @@ public class CipherManager : MonoBehaviour
             noteTexts[i].text = ConvertString(possibilities[indexCode[i]], 26 - shifts[i]);
         }
 
-        Debug.Log("Shifts : " + shifts[0] + ";" + shifts[1] + ";" + shifts[2]);
-        Debug.Log("Code : " + doorCode);
-        Debug.Log("Don't look here");
+        cheatCode.text = doorCode;
     }
 
     private void ChooseCode()
     {
         for (int i = 0; i < indexCode.Length; i++)
         {
-            indexCode[i] = Random.Range(0, possibilities.Length);
+            indexCode[i] = UnityEngine.Random.Range(0, possibilities.Length);
         }
     }
 

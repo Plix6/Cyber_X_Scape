@@ -9,6 +9,7 @@ public class SafeScript : MonoBehaviour
     [SerializeField] private GameObject message2;
     [SerializeField] private GameObject Animation;
     [SerializeField] private GameObject dialogManager;
+    [SerializeField] private AudioClip soundLength;
     private AudioSource sound;
     private DialogManager1 dm1;
     private Animator animator;
@@ -21,6 +22,12 @@ public class SafeScript : MonoBehaviour
         dm1 = dialogManager.GetComponent<DialogManager1>();
         sound = GetComponentInChildren<AudioSource>();
         animator = Animation.GetComponent<Animator>();
+    }
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(soundLength.length);
+        animator.SetBool("open", !animator.GetBool("open"));
+        yield return null;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -70,9 +77,9 @@ public class SafeScript : MonoBehaviour
                 objectInteraction.DropObject();
             }
             Destroy(secretFile.gameObject);
-            animator.SetBool("open", !animator.GetBool("open"));
             sound.Play();
             dm1.FinishRoom();
+            StartCoroutine(Delay());   
         }
         else
         {

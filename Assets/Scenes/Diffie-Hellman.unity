@@ -8721,8 +8721,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message1: {fileID: 1176063294}
-  message2: {fileID: 1880430113}
-  message3: {fileID: 250333378}
+  message2: {fileID: 416940911}
+  message3: {fileID: 1793763100}
   camera_field: {fileID: 1776247343}
 --- !u!1001 &896522676
 PrefabInstance:

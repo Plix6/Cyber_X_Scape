@@ -72,7 +72,7 @@ public class SafeScript : MonoBehaviour
         if (secretFile != null)
         {
             hasSecretFile = true;
-            if (playerTransform.TryGetComponent<ObjectInteraction>(out var objectInteraction))
+            if (playerTransform.TryGetComponent<Interaction>(out var objectInteraction))
             {
                 objectInteraction.DropObject();
             }

@@ -52,26 +52,27 @@ public class LockController1 : MonoBehaviour
     private void CheckFinaleKey(Transform playerTransform)
     {
         message1.SetActive(false);
+        Transform holdArea = FindChildWithTag(playerTransform, "holdArea");
 
-        Transform FinaleKey = FindChildWithTag(playerTransform, "FinaleKey");
-        Debug.Log(FinaleKey);
+        Transform FinaleKey = FindChildWithTag(holdArea, "FinaleKey");
+        Debug.Log("Finale key is :",FinaleKey);
 
-        if (FinaleKey == null || player.GetComponent<ObjectInteraction>().getKey_2())
+        if (FinaleKey == null || player.GetComponentInChildren<Interaction>().getKey_2())
         {
             message2.SetActive(true);
             return;
         }
 
         hasFinaleKey = true;
-        var objectInteraction = playerTransform.GetComponent<ObjectInteraction>();
+        var objectInteraction = playerTransform.GetComponentInChildren<Interaction>();
         if (objectInteraction != null)
         {
             objectInteraction.DropObject();
             Destroy(FinaleKey.gameObject);
             audio[0].Play();
-            player.GetComponent<ObjectInteraction>().setKey_2();
+            player.GetComponentInChildren<Interaction>().setKey_2();
 
-            if (player.GetComponent<ObjectInteraction>().getKey_1())
+            if (player.GetComponentInChildren<Interaction>().getKey_1())
             {
                 audio[1].Play();
                 StartCoroutine(Delay());

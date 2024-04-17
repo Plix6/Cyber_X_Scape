@@ -10,6 +10,7 @@ TagManager:
   - SecretFile
   - FinaleKey
   - PersonalKey
+  - holdArea
   layers:
   - Default
   - TransparentFX

@@ -29,14 +29,20 @@ public class KeyMixer : MonoBehaviour
     {
         if (other.CompareTag("Key"))
         {
-            player.GetComponent<ObjectInteraction>().DropObject();
-            GameObject temp = other.gameObject;
-            keys[keysInside] = temp;
-            keysInside++;
-            if (keysInside == 2)
+            if (player.GetComponentInChildren<Interaction>().getIsHolding())
             {
-                MixAndSpawnKey();
-                keysInside = 0;
+                Debug.Log("Le joueur est en train de tenir une clé");
+            }
+            else
+            {
+                GameObject temp = other.gameObject;
+                keys[keysInside] = temp;
+                keysInside++;
+                if (keysInside == 2)
+                {
+                    MixAndSpawnKey();
+                    keysInside = 0;
+                }
             }
         }
     }

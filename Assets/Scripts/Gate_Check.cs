@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Gate_Check : MonoBehaviour
 {
+    [SerializeField] private GameObject instruction;
     private AudioSource sound;
 
     private void Awake()
     {
         sound = GetComponentInChildren<AudioSource>();
+        instruction.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,18 +22,28 @@ public class Gate_Check : MonoBehaviour
 
             if (keyTransform != null)
             {
-                other.GetComponent<ObjectInteraction>().DropObject();
+                other.GetComponentInChildren<Interaction>().DropObject();
                 Destroy(keyTransform.gameObject);
+                StartCoroutine(Delay());
                 sound.Play();
             }
             if (finaleKey != null)
             {
-                other.GetComponent<ObjectInteraction>().DropObject();
+                other.GetComponentInChildren<Interaction>().DropObject();
                 Destroy(finaleKey.gameObject);
+                StartCoroutine(Delay());
                 sound.Play();
 
             }
         }
+    }
+
+    private IEnumerator Delay()
+    {
+        instruction.SetActive(true);
+        yield return new WaitForSeconds(5);
+        instruction.SetActive(false);
+        yield return null;
     }
 
     private Transform FindChildWithTag(Transform parent, string tag)

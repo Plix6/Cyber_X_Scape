@@ -17,8 +17,8 @@ public class MovingCamera : MonoBehaviour
 
             if (keyTransform != null)
             {
-                message.SetActive(true); // Rajouter un wait ou qqch du genre
-                other.GetComponent<ObjectInteraction>().DropObject();
+                message.SetActive(true);
+                other.GetComponentInChildren<Interaction>().DropObject();
                 Destroy(keyTransform.gameObject);
                 GameObject newKey = Instantiate(prefab, spawnPoint.transform.position, Quaternion.identity, parent.transform);
             }

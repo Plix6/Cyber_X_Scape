@@ -14588,7 +14588,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1412562432779378356, guid: 10ba1689a33c7d140b08be70b7cc0255, type: 3}
       propertyPath: newSceneName
-      value: StartRoom
+      value: EndRoom
       objectReference: {fileID: 0}
     - target: {fileID: 2542864537629097683, guid: 10ba1689a33c7d140b08be70b7cc0255, type: 3}
       propertyPath: m_LocalPosition.x

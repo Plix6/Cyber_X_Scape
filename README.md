@@ -12,4 +12,4 @@ Jeu d'escape game sur la cryptographie dans le cadre du projet M1 à l'ISEN Lill
 En cas de soucis ou de feedback, envoyer un mail à olivier.bossavit.pro@gmail.com
 
 # Can't speak french ?
-Sorry to hear this, but this game is exclusively in french and no english support is planend
+Sorry to hear this, but this game is exclusively in french and no english support is planned
